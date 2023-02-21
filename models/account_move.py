@@ -8,7 +8,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     def _check_lock_to_dates(self):
-        """Prevent moves that are on or after lock to date.
+        """Prevent moves that are on or before lock to date.
 
         Advisors have more freedom then other users and are only constrained
         by the ficalyear_lock_to_date.
@@ -26,15 +26,15 @@ class AccountMove(models.Model):
                     if user_lock_to_date and advisor_lock_to_date
                     else user_lock_to_date or advisor_lock_to_date or False
                 )
-            if lock_to_date and move.date >= lock_to_date:
+            if lock_to_date and move.date <= lock_to_date:
                 if is_advisor:
                     message = _(
-                        "You cannot add/modify entries after and "
+                        "You cannot add/modify entries before and "
                         "inclusive of the lock to date %s"
                     ) % (lock_to_date)
                 else:
                     message = _(
-                        "You cannot add/modify entries after and "
+                        "You cannot add/modify entries before and "
                         "inclusive of the lock to date %s. "
                         "Check the company settings or ask someone "
                         "with the 'Adviser' role"
