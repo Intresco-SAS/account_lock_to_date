@@ -72,7 +72,7 @@ class ResCompany(models.Model):
             ):
                 raise ValidationError(
                     _(
-                        "The new lock to date for advisors must be set before "
+                        "The new lock to date for advisors must be set after "
                         "the previous lock to date."
                     )
                 )
@@ -86,14 +86,14 @@ class ResCompany(models.Model):
 
             # The user attempts to set a lock date for advisors before
             # the first day of next month
-            if fiscalyear_lock_to_date < next_month:
-                raise ValidationError(
-                    _(
-                        "You cannot lock a period that is not finished yet. "
-                        "Please make sure that the lock date for advisors is "
-                        "set at or before the last day of the next month."
-                    )
-                )
+            #if fiscalyear_lock_to_date < next_month:
+                #raise ValidationError(
+                #    _(
+                #        "You cannot lock a period that is not finished yet. "
+                #        "Please make sure that the lock date for advisors is "
+                #        "set at or before the last day of the next month."
+                #    )
+               # )
 
             # In case of no new period lock to date in vals,
             # fallback to the one defined in the company
