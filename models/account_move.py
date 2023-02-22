@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, models
 from odoo.exceptions import ValidationError
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class AccountMove(models.Model):
@@ -20,9 +22,10 @@ class AccountMove(models.Model):
             user_lock_to_date = move.company_id.period_lock_to_date
             if is_advisor:
                 lock_to_date = advisor_lock_to_date or False
+            
             else:
                 lock_to_date = (
-                    min(user_lock_to_date, advisor_lock_to_date)
+                    max(user_lock_to_date, advisor_lock_to_date)
                     if user_lock_to_date and advisor_lock_to_date
                     else user_lock_to_date or advisor_lock_to_date or False
                 )
