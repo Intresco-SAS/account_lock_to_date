@@ -107,14 +107,14 @@ class ResCompany(models.Model):
 
             # The user attempts to set a lock to date for advisors
             # prior to the lock to date for users
-            if period_lock_to_date < fiscalyear_lock_to_date:
-                raise ValidationError(
-                    _(
-                        "You cannot define stricter conditions on advisors "
-                        "than on users. Please make sure that the lock date "
-                        "on advisor is set before the lock date for users."
-                    )
-                )
+            #if period_lock_to_date < fiscalyear_lock_to_date:
+                #raise ValidationError(
+                    #_(
+                    #    "You cannot define stricter conditions on advisors "
+                    #    "than on users. Please make sure that the lock date "
+                    #    "on advisor is set before the lock date for users."
+                    #)
+                #)
 
     def _validate_fiscalyear_lock(self, values):
         res = super()._validate_fiscalyear_lock(values)
