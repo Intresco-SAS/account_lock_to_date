@@ -43,7 +43,11 @@ class AccountMove(models.Model):
                         "with the 'Adviser' role"
                     ) % (lock_to_date)
                 raise ValidationError(message)
-
+    
+    def post(self):
+        self._check_lock_to_dates()
+        return super().post()
+    
     def action_post(self):
         self._check_lock_to_dates()
         return super().action_post()
