@@ -17,13 +17,13 @@ class AccountUpdateLockToDate(models.TransientModel):
     )
     period_lock_to_date = fields.Date(
         string="Lock To Date for Non-Advisers",
-        help="Only users with the 'Adviser' role can edit accounts before "
+        help="Only users with the 'Adviser' role can edit accounts after "
         "and inclusive of this date. Use it for period locking inside an "
         "open fiscal year, for example.",
     )
     fiscalyear_lock_to_date = fields.Date(
         string="Lock To Date",
-        help="No users, including Advisers, can edit accounts before and "
+        help="No users, including Advisers, can edit accounts after and "
         "inclusive of this date. Use it for fiscal year locking for "
         "example.",
     )
