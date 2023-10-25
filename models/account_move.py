@@ -16,7 +16,7 @@ class AccountMove(models.Model):
         by the ficalyear_lock_to_date.
         Other users will also be restricted by the period_lock_to_date.
         """
-        is_advisor = self.user_has_groups("account.group_account_manager")
+        is_advisor = self.user_has_groups("account_lock_to_date.accountant_role")
         for move in self:
             advisor_lock_to_date = move.company_id.fiscalyear_lock_to_date
             user_lock_to_date = move.company_id.period_lock_to_date

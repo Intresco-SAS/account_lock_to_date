@@ -13,6 +13,7 @@
     "depends": ["account"],
     "data": [
         "security/ir.model.access.csv",
+        "security/groups.xml",
         "wizards/account_update_lock_to_date.xml",
     ],
 }

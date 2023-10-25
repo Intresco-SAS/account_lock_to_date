@@ -43,7 +43,7 @@ class AccountUpdateLockToDate(models.TransientModel):
 
     def _check_execute_allowed(self):
         self.ensure_one()
-        has_adviser_group = self.env.user.has_group("account.group_account_manager")
+        has_adviser_group = self.env.user.has_group("account_lock_to_date.accountant_role")
         if not (has_adviser_group or self.env.uid == SUPERUSER_ID):
             raise ValidationError(_("You are not allowed to execute this action."))
 
